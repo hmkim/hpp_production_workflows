@@ -107,7 +107,7 @@ task ntsm_count {
                     # samtools fastq -@~{threadCount} -c 1 -1 output/${PREFIX}_1.fastq.gz -2 output/${PREFIX}_2.fastq.gz --reference `basename ~{cram_reference}` $READFILE
                     samtools fastq -@~{threadCount} --reference `basename ~{cram_reference}` $READFILE | gzip --fast --stdout >  output/${PREFIX}.fastq.gz              
                 elif [[ "$SUFFIX" == "fastq" ]] ; then
-                    gzip $READFILE > output/${PREFIX}.fastq.gz
+                    gzip -c $READFILE > output/${PREFIX}.fastq.gz
                 
                 elif [[ "$SUFFIX" != "gz" ]] ; then
                     echo "Unsupported file type: ${PREFIX}.${SUFFIX}"
